@@ -1,12 +1,8 @@
-#[macro_use]
-extern crate lazy_static;
-extern crate byteorder;
-extern crate sha2;
-
 use std::error::Error;
 use std::io::Cursor;
-use byteorder::{BigEndian, ReadBytesExt};
+use byteorder::{LittleEndian, ReadBytesExt};
 use sha2::{Sha256, Digest};
+use lazy_static::lazy_static;
 
 const WORDFILE: &'static str = include_str!("../data/common_words.lst");
 lazy_static! {
@@ -21,7 +17,7 @@ pub fn hash_en(bytestring: &[u8]) -> Result<Vec<&str>, Box<dyn Error>> {
     let result = hasher.result();
     let mut cur = Cursor::new(result.as_slice());
     let mut indices = [0_u16; 16];
-    cur.read_u16_into::<BigEndian>(&mut indices)?;
+    cur.read_u16_into::<LittleEndian>(&mut indices)?;
     let words = indices
         .iter()
         .map(|&idx| WORDLIST[idx as usize])
