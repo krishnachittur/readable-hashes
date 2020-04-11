@@ -1,8 +1,8 @@
 [package]
 name = "readable-hashes"
 version = "0.1.0"
-authors = ["Krishna Chittur <kchittur@utexas.edu>"]
-license = "CC-BY-4.0 OR GPL-3.0"
+authors = ["Krishna Chittur <kchittur@gmail.com>"]
+license = "MIT"
 edition = "2018"
 description = "Get the SHA-256 of a bytestring as a readable sequence of 16 English words."
 repository = "https://github.com/krishnachittur/readable-hashes"
